@@ -1,6 +1,17 @@
 --Exercício 1
 --1) Escreva um programa que peça ao usuário um número de segundos e calcule (e mostre) o número de dias, horas e segundos correspondente.
 
+-- a ser testado
+converter = function( s , v , n )
+        
+    v = math.floor(s / n)
+        
+    s = s % n
+        
+    return s , v
+  
+end
+
 --Pergunta
 
 while true do
@@ -8,7 +19,7 @@ while true do
 
     --Atribui à variável s um valor de segundos recebido pelo usuário
     local s = io.read("*n")
-
+    
     --[[
     Atribui à variável d a quantidade de dias que corresponde à quantidade de segundos em s
     O valor é arredondado para o próximo inteiro menor que ele
@@ -18,7 +29,7 @@ while true do
 
     --Segundos restantes em s
     s = s % (60*60*24)
-
+    
     --[[
     Atribui à variável h a quantidade de horas que corresponde aos segundos restantes
     O valor é arredondado para o próximo inteiro menor que ele
