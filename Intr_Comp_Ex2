@@ -3,9 +3,7 @@
 
 --Pergunta
 
-i = true
-
-while i == true do
+while true do
     print("Insira uma linha de texto:")
 
     --Atribui à variável t um texto recebido pelo usuário
