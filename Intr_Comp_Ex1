@@ -1,0 +1,40 @@
+--Exercício 1
+--1) Escreva um programa que peça ao usuário um número de segundos e calcule (e mostre) o número de dias, horas e segundos correspondente.
+
+--Pergunta
+
+i = true
+
+while i == true do
+    print("Insira uma quantidade de segundos:")
+
+    --Atribui à variável s um valor de segundos recebido pelo usuário
+    local s = io.read("*n")
+
+    --Atribui à variável d a quantidade de dias que corresponde à quantidade de segundos em s
+    --O valor é arredondado para o próximo inteiro menor que ele
+    --Quantidade de segundos em 1 dia: 60*60*24 = 86400
+    local d = math.floor( s / 86400 )
+
+    --Segundos restantes em s
+    local s = s % 86400
+
+    --Atribui à variável h a quantidade de horas que corresponde aos segundos restantes
+    --O valor é arredondado para o próximo inteiro menor que ele
+    --Quantidade de segundos em 1 hora: 60*60 = 3600
+    local h = math.floor( s / 3600 )
+
+    --Segundos restantes em s
+    local s = s % 3600
+        
+    --Atribui à variável m a quantidade de minutos que corresponde aos segundos restantes
+    --O valor é arredondado para o próximo inteiro menor que ele
+    --Quantidade de segundos em 1 minuto: 60
+    local m = math.floor( s / 60 )
+
+    --Segundos restantes em s
+    local s = s % 60
+
+    --Resposta
+    print("Dias:",d,"Horas: ",h,"Minutos: ",m,"Segundos: ",s)
+end
