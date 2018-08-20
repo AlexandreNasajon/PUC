@@ -17,7 +17,7 @@ while true do
     local d = math.floor( s / (60*60*24) )
 
     --Segundos restantes em s
-    local s = s % (60*60*24)
+    s = s % (60*60*24)
 
     --[[
     Atribui à variável h a quantidade de horas que corresponde aos segundos restantes
@@ -27,7 +27,7 @@ while true do
     local h = math.floor( s / (60*60) )
 
     --Segundos restantes em s
-    local s = s % (60*60)
+    s = s % (60*60)
         
     --[[
     Atribui à variável m a quantidade de minutos que corresponde aos segundos restantes
@@ -37,7 +37,7 @@ while true do
     local m = math.floor( s / 60 )
 
     --Segundos restantes em s
-    local s = s % 60
+    s = s % 60
 
     --Resposta
     print("Dias:",d,"Horas: ",h,"Minutos: ",m,"Segundos: ",s)
