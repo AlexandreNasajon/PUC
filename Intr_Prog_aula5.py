@@ -58,3 +58,6 @@ def draw_circle(turtle):
     return
 
 draw_circle(frank)
+
+for i in range(360):
+    
