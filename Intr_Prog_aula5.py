@@ -35,3 +35,26 @@ draw_square(frank)
 frank.end_fill()  
 frank.left(45)
 
+frank.reset()
+
+def draw_triangle(turtle):
+    frank.fillcolor('red')
+    frank.begin_fill()
+    frank.fd(100)
+    frank.right(120)
+    frank.fd(100)
+    frank.right(120)
+    frank.fd(100)
+    frank.end_fill()
+    return
+
+draw_triangle(frank)
+
+frank.reset()
+
+def draw_circle(turtle):
+    import math
+    frank.circle(10)
+    return
+
+draw_circle(frank)
