@@ -52,12 +52,14 @@ draw_triangle(frank)
 
 frank.reset()
 
-def draw_circle(turtle):
-    import math
-    frank.circle(10)
-    return
+frank.circle(30)
 
-draw_circle(frank)
+frank.reset()
 
-for i in range(360):
-    
+frank.circle(100)
+frank.up()
+frank.left(90)
+frank.fd(50)
+frank.right(90)
+frank.down()
+frank.circle(50)
