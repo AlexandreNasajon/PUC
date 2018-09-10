@@ -7,74 +7,70 @@ function jogada ( tentativas_restantes , numero_correto )
       return
     
     else
-    print( "O número da sorte (entre 1 e 1024) foi gerado! Restam-lhe "..tentativas_restantes.." tentativas." )
+        print( "O número da sorte (entre 1 e 1024) foi gerado! Restam-lhe "..tentativas_restantes.." tentativas." )
     
-      local input = io.read("*n")
+        local input = io.read("*n")
     
-      if input == numero_correto then
+        if input == numero_correto then
       
-        print(0)
-        print("Tentativas usadas: "..tentativas_restantes , "Número da sorte: "..numero_correto )
-        return
+            print(0)
+            print("Tentativas usadas: "..tentativas_restantes , "Número da sorte: "..numero_correto )
+            return
       
-      elseif input < numero_correto then
+        elseif input < numero_correto then
       
-        print(1)
-        return jogada ( tentativas_restantes - 1 , numero_correto )
+            print(1)
+            return jogada ( tentativas_restantes - 1 , numero_correto )
     
-      elseif input > numero_correto then
+        elseif input > numero_correto then
       
-        print(-1)
-        return jogada ( tentativas_restantes - 1 , numero_correto )
+            print(-1)
+            return jogada ( tentativas_restantes - 1 , numero_correto )
         
-      end
+        end
     end
-  end
+end
 
-function cpu_adivinha( tentativas_restantes , dica , cpu_tentativa )
-  
-  if tentativas_restantes == 0 then
-      print( "Acabaram as tentativas do computador. Você ganhou!" )
-      return
+function cpu_adivinha( tentativas_restantes , min , max )
+
+    local cpu_tentativa
+
+    local dica
+
+    if tentativas_restantes == 0 then
+        print( "Acabaram as tentativas do computador. Você ganhou!" )
+        return
     
-  else
-    
-    if not dica then
+    else
+
+        --não otimizado
+        --cpu_tentativa = math.random( min , max )
+
+        --otimizado
+        cpu_tentativa = math.floor( (min + max) / 2 )
       
-      local cpu_tentativa = math.random(1,1024)
+        print( cpu_tentativa )
+    
+        dica = io.read("*n")
+
+        if dica == 1 then
+
+            local min = cpu_tentativa + 1
+
+            return cpu_adivinha( tentativas_restantes - 1 , min , max )
+
+        elseif dica == -1 then
+
+            local max = cpu_tentativa - 1
+
+            return cpu_adivinha( tentativas_restantes - 1 , min , max )
+
+        elseif dica == 0 then
       
-      print( cpu_tentativa )
-    
-      local dica = io.read("*n")
-    
-      return cpu_adivinha( tentativas_restantes - 1 , dica , cpu_tentativa)
-    
-    elseif dica == 1 then
+            print("O computador acertou! Foram necessárias "..21 - tentativas_restantes.." tentativas." )
       
-      local cpu_tentativa = math.random(1,1024)
-      
-      print( cpu_tentativa )
-    
-      local dica = io.read("*n")
-    
-      return cpu_adivinha( tentativas_restantes - 1 , dica , cpu_tentativa )
-      
-    elseif dica == -1 then
-      
-      local cpu_tentativa = math.random(1,1024)
-    
-      print( cpu_tentativa )
-    
-      local dica = io.read("*n")
-    
-      return cpu_adivinha( tentativas_restantes - 1 , dica , cpu_tentativa )
-    
-    elseif dica == 0 then
-      
-      print("O computador acertou! Foram necessárias "..tentativas_restantes.." tentativas." )
-      
+        end
     end
-  end
 end
 
 print("Jogo de adivinhação")
@@ -83,16 +79,23 @@ print("Quem tentará adivinhar?")
 print("0 - O usuário")
 print("1 - O computador")
 
-local game_mode = io.read("*n")
+while true do
 
-if game_mode == 0 then
-  
-  lucky_number = math.random(1,1024)
+    local game_mode = io.read("*n")
 
-  jogada( 20 , lucky_number )
-  
-elseif game_mode == 1 then
-  
-  
-  
+    if game_mode == 0 then
+    
+        lucky_number = math.random( 1 , 1024 )
+
+        jogada( 20 , lucky_number )
+
+        return false
+    
+    elseif game_mode == 1 then
+
+        cpu_adivinha( 20 , 1 , 1024 )
+
+        return false
+    
+    end
 end
