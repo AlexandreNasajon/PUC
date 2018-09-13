@@ -1,8 +1,5 @@
 import math
 
-altura = int(input("Altura?"))
-raio = int(input("Raio?"))
-
 #qty_latas
 
 #custo_total
@@ -13,8 +10,6 @@ raio = int(input("Raio?"))
 
 #litro_tinta = 3 metros quadrados
 
-comprimento = 2 * math.pi * raio
-
 def area_retangulo( altura , comprimento ):
     return altura * comprimento    
 
@@ -24,7 +19,7 @@ def area_circulo( raio ):
 def area_cilindro( raio , altura ):
     a = area_circulo(raio)
     b = area_retangulo( altura , comprimento)
-    return a + b
+    return 2 * a + b
     
 def qty_latas( raio , altura ):
     area = area_cilindro( raio , altura )
@@ -32,6 +27,11 @@ def qty_latas( raio , altura ):
     latas_de_tinta = litros_de_tinta / 5
     custo_da_lata = 20 * latas_de_tinta
     return custo_da_lata
+
+altura = int(input("Altura?"))
+raio = int(input("Raio?"))
+
+comprimento = 2 * math.pi * raio
 
 print(area_retangulo( altura , comprimento))
 
