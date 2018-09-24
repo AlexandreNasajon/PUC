@@ -51,22 +51,28 @@ function love.mousepressed (x, y)
         disc[i].color[2] = 0
         disc[i].color[3] = 0
         
+        disc.selected = true
+        
       end
   end
 end
 
 function love.keypressed ( key , scancode , isrepeat )
   
-  love.keyboard.setKeyRepeat(true) --pode manter tecla pressionada
+  if disc.selected then
+    
+    love.keyboard.setKeyRepeat(true) --pode manter tecla pressionada
+    
+    if key == "right" then
+      disc[pos].x = disc[pos].x + 10
+    elseif key == "left" then
+      disc[pos].x = disc[pos].x - 10
+    elseif key == "up" then
+      disc[pos].y = disc[pos].y - 10
+    elseif key == "down" then
+      disc[pos].y = disc[pos].y + 10
+    end
   
-  if key == "right" then
-    disc[pos].x = disc[pos].x + 10
-  elseif key == "left" then
-    disc[pos].x = disc[pos].x - 10
-  elseif key == "up" then
-    disc[pos].y = disc[pos].y - 10
-  elseif key == "down" then
-    disc[pos].y = disc[pos].y + 10
   end
   
 end
