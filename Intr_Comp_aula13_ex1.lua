@@ -43,17 +43,7 @@ local function overlap (i, j)
   end
 end
 
-function love.update()
-  local dx, dy = 0, 0
-  if love.keyboard.isDown("right") then
-    dx = 1
-  elseif love.keyboard.isDown("left") then
-    dx = -1
-  elseif love.keyboard.isDown("down") then
-    dy = 1
-  elseif love.keyboard.isDown("up") then
-    dy = -1
-  elseif love.keyboard.isDown("t") then
+local function nasajon()
     for k , v in pairs(selected) do
             for j , p in pairs(selected) do
                 if k ~= j then
@@ -66,22 +56,37 @@ function love.update()
             end
         end
         
-        for k , v in pairs(selected) do
-            for j , p in pairs(selected) do
-                if discs[k].x + discs[k].r > w then
-                    discs[k].x = w - discs[k].r
-                elseif discs[k].x < discs[k].r then
-                    discs[k].x = discs[k].r
-                end
+    for k , v in pairs(selected) do
+        for j , p in pairs(selected) do
+            if discs[k].x + discs[k].r > w then
+                discs[k].x = w - discs[k].r
+            elseif discs[k].x < discs[k].r then
+                discs[k].x = discs[k].r
+            end
                 
-                if discs[k].y + discs[k].r > h then
-                      discs[k].y = h - discs[k].r
-                elseif discs[k].y < discs[k].r then
-                      discs[k].y = discs[k].r
-                end
+            if discs[k].y + discs[k].r > h then
+                discs[k].y = h - discs[k].r
+            elseif discs[k].y < discs[k].r then
+                discs[k].y = discs[k].r
             end
         end
     end
+end
+
+function love.update()
+  local dx, dy = 0, 0
+  if love.keyboard.isDown("right") then
+    dx = 1
+  elseif love.keyboard.isDown("left") then
+    dx = -1
+  elseif love.keyboard.isDown("down") then
+    dy = 1
+  elseif love.keyboard.isDown("up") then
+    dy = -1
+  elseif love.keyboard.isDown("t") then
+      nasajon()
+
+  end
   for index,_ in pairs(selected) do
     discs[index].x = discs[index].x + 25*dx*delta
     discs[index].y = discs[index].y + 25*dy*delta
@@ -105,33 +110,7 @@ function love.keypressed (key)
         selected = {}
         
     elseif key == "r" then
-        for k , v in pairs(selected) do
-            for j , p in pairs(selected) do
-                if k ~= j then
-                    local ux , uy = overlap( k , j )
-                    discs[k].x = discs[k].x - ux/2
-                    discs[k].y = discs[k].y - uy/2
-                    discs[j].x = discs[j].x + ux/2
-                    discs[j].y = discs[j].y + uy/2                    
-                end
-            end
-        end
-        
-        for k , v in pairs(selected) do
-            for j , p in pairs(selected) do
-                if discs[k].x + discs[k].r > w then
-                    discs[k].x = w - discs[k].r
-                elseif discs[k].x < discs[k].r then
-                    discs[k].x = discs[k].r
-                end
-                
-                if discs[k].y + discs[k].r > h then
-                      discs[k].y = h - discs[k].r
-                elseif discs[k].y < discs[k].r then
-                      discs[k].y = discs[k].r
-                end
-            end
-        end
+        nasajon()
     end
 end
 
